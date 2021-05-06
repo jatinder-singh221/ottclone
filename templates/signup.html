@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% block login %}
+    <div class="container mt-3 ">
+        {{signup.non_field_errors}}
+        <form action="{% url 'auth:signup' %}" method="POST">
+            {% csrf_token %}
+            <div class="row justify-content-center">
+                <div class="col col-md-4">
+                    <p class="display-6">Sing Up</p>
+                </div>
+                <div class="w-100"></div>
+                <div class="col col-md-2">
+                    <label class="form-label" for="{{singup.first_name.id_for_label}}">{{singup.first_name.label}}</label>
+                    {{singup.first_name}}
+                    {{singup.first_name.errors}}
+                </div>
+                <div class="col col-md-2">
+                    <label class="form-label" for="{{singup.last_name.id_for_label}}">{{singup.last_name.label}}</label>
+                    {{singup.last_name}}
+                    {{singup.last_name.errors}}
+                </div>
+                <div class="w-100"></div>
+                <div class="col-12 col-md-4">
+                    <label class="form-label" for="{{singup.username.id_for_label}}">{{singup.username.label}}</label>
+                    {{singup.username}}
+                    {% if singup.username.errors %}
+                    <script>
+                        var user = '{{singup.username.id_for_label}}';
+                        var user_add_class = document.getElementById(user);
+                        user_add_class.classList.add('is-invalid')
+                    </script>
+                    {% for error in singup.username.errors %}
+                        <div class="invalid-feedback">
+                            {{error}}
+                        </div>
+                    {% endfor %}
+                    {% endif %}
+                </div>
+                <div class="w-100"></div>
+                <div class="col-12 col-md-4">
+
+                    <label class="form-label" for="{{singup.password1.id_for_label}}">{{singup.password1.label}}</label>
+                    {{singup.password1}}
+                </div>
+                <div class="w-100"></div>
+                <div class="col-12 col-md-4">
+
+                    <label class="form-label" for="{{singup.password2.id_for_label}}">{{singup.password2.label}}</label>
+                    {{singup.password2}}
+                    {% if singup.password2.errors %}
+                        <script>
+                            var element1 = '{{singup.password2.id_for_label}}';
+                            var element2 = '{{singup.password1.id_for_label}}';
+                            var add_class1 = document.getElementById(element1);
+                            var add_class2 = document.getElementById(element2);
+                            add_class1.classList.add('is-invalid')
+                            add_class2.classList.add('is-invalid')
+                        </script>
+                        {% for error in singup.password2.errors %}
+                            <div class="invalid-feedback">
+                                {{error}}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                <div class="w-100"></div>
+                <div class="col-12 col-md-4 ">
+                    <button type="submit" class="btn btn-primary w-100 mt-2">Create Account     </button>
+                </div>
+                <div class="w-100"></div>
+                <div class="col-12 col-md-4 pt-2">
+                    <hr>
+                    <a href="" class="btn btn-success w-100">Have A Account</a>
+                </div>
+            </div>
+
+        </form>
+    </div>
+{% endblock %}
