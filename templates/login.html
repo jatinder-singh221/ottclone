@@ -1,10 +1,14 @@
 {% extends 'base.html' %}
-{% block login %}
+{% block logo %}
+<i class="bi bi-disc fs-1  text-primary"></i>
+{% endblock %}
+{% block form %}
     <div class="container mt-3 ">
         <form action="{% url 'auth:login' %}" method="POST">
             {% csrf_token %}
             <div class="row justify-content-center">
-                <div class="col-12 col-md-4">
+                
+                <div class="col-12 col-md-4 " >
                     {% if signin.non_field_errors %}
                     {% for error in signin.non_field_errors %}
                         <div class="alert alert-danger alert-sm">{{error }}</div>
@@ -12,8 +16,8 @@
                     {% endif %}  
                 </div>
                 <div class="w-100"></div>
-                <div class="col-12 col-md-4">
-                    <p class="display-6">Sign In</p>
+                <div class="col-12 col-md-4 ">
+                    <h4>Sign In</h4>
                 </div>
                 <div class="w-100"></div>
                 <div class="col-12 col-md-4">
@@ -35,7 +39,7 @@
                     <a href="" class="text-decoration-none">Forget Password?</a>
                     <div class="w-100"></div>
                     <hr>
-                    <a href="" class="btn btn-success w-100">Create New Account</a>
+                    <a href="{% url 'auth:signup' %}" class="btn btn-success w-100">Create New Account</a>
                 </div>
             </div>
 

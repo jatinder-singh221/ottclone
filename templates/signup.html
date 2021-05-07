@@ -1,23 +1,49 @@
 {% extends 'base.html' %}
-{% block login %}
+{% block logo %}
+<i class="bi bi-disc fs-1  text-primary"></i>
+{% endblock %}
+{% block form %}
     <div class="container mt-3 ">
         {{signup.non_field_errors}}
         <form action="{% url 'auth:signup' %}" method="POST">
             {% csrf_token %}
             <div class="row justify-content-center">
                 <div class="col col-md-4">
-                    <p class="display-6">Sing Up</p>
+                    <h4>Sing Up</h4>
                 </div>
                 <div class="w-100"></div>
                 <div class="col col-md-2">
                     <label class="form-label" for="{{singup.first_name.id_for_label}}">{{singup.first_name.label}}</label>
                     {{singup.first_name}}
-                    {{singup.first_name.errors}}
+
+                    {% if singup.first_name.errors %}
+                    <script>
+                        var user = '{{singup.first_name.id_for_label}}';
+                        var user_add_class = document.getElementById(user);
+                        user_add_class.classList.add('is-invalid')
+                    </script>
+                    {% for error in singup.first_name.errors %}
+                        <div class="invalid-feedback">
+                            {{error}}
+                        </div>
+                    {% endfor %}
+                    {% endif %}
                 </div>
                 <div class="col col-md-2">
                     <label class="form-label" for="{{singup.last_name.id_for_label}}">{{singup.last_name.label}}</label>
                     {{singup.last_name}}
-                    {{singup.last_name.errors}}
+                    {% if singup.last_name.errors %}
+                    <script>
+                        var user = '{{singup.last_name.id_for_label}}';
+                        var user_add_class = document.getElementById(user);
+                        user_add_class.classList.add('is-invalid')
+                    </script>
+                    {% for error in singup.last_name.errors %}
+                        <div class="invalid-feedback">
+                            {{error}}
+                        </div>
+                    {% endfor %}
+                    {% endif %}
                 </div>
                 <div class="w-100"></div>
                 <div class="col-12 col-md-4">
@@ -70,7 +96,7 @@
                 <div class="w-100"></div>
                 <div class="col-12 col-md-4 pt-2">
                     <hr>
-                    <a href="" class="btn btn-success w-100">Have A Account</a>
+                    <a href="{% url 'auth:login' %}" class="btn btn-secondary w-100">Already Have A Account</a>
                 </div>
             </div>
 
