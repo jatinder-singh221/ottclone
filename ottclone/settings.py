@@ -22,6 +22,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'auth_user.apps.AuthUserConfig',
+    'shows.apps.ShowsConfig',
 ]
 
 MIDDLEWARE = [
@@ -97,9 +98,16 @@ USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
-
+import os
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR,'collectstatic')
+]
+STATIC_ROOT = os.path.join(BASE_DIR,'assests')
 
+# media 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR,'mediafiles')
 # Default primary key field type
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

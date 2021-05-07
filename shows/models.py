@@ -1,0 +1,27 @@
+from django.core.exceptions import ValidationError
+from django.db import models
+from .validators import input_validation, image_validation, vedio_validation
+
+class catagories(models.Model):
+    catagorie_name = models.CharField('catagorie',max_length=100,validators=[input_validation])
+
+    class Meta:
+        db_table = 'catagoires'
+        verbose_name_plural = 'catagoires'
+
+    def __str__(self):
+        return self.catagorie_name.title()
+
+class show(models.Model):
+    show_name = models.CharField('show name', max_length=100, db_column='show_name',validators=[input_validation])
+    show_upload_date = models.DateField(auto_now_add=True,verbose_name='upload date')
+    show_title = models.CharField('show title', max_length=100, db_column='show_title',validators=[input_validation])
+    show_description = models.CharField('show description', max_length=100, db_column='show_description',validators=[input_validation])
+    show_caption = models.ImageField(verbose_name='show caption',upload_to='shows',validators=[image_validation])
+    show_catagory = models.OneToOneField(catagories, on_delete=models.CASCADE, verbose_name='catagory', related_name='catagory_related', related_query_name='query_catagory')
+    show_vedio = models.FileField(upload_to='vedio',verbose_name='show vedio',validators=[vedio_validation])
+
+    class Meta:
+        db_table = 'show_table'
+        get_latest_by = ['-show_upload_date']
+        verbose_name_plural = 'show'

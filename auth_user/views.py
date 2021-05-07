@@ -42,3 +42,6 @@ def signup(request):
 
         context = {'singup':signupform}
         return render(request, 'signup.html',context)
+
+def home(request):
+    return render(request,'navbar.html')
