@@ -41,6 +41,7 @@
           </li>
         </ul>
         <div class="w-auto">
+          {% if request.user.is_authenticated %}
             <div class="btn-group  dropdown ">
                 <button type="button" class="btn btn-outline-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                   Jatinder singh
@@ -50,9 +51,15 @@
                     <li><a class="dropdown-item" href="#"><i class="bi bi-gear"></i> Settings</a></li>
                     <li><a class="dropdown-item" href="#"><i class="bi bi-archive"></i> Histrory</a></li>
                     <li><a class="dropdown-item" href="#"><i class="bi bi-heart"></i> Wishlist</a></li>
+                    <li><a class="dropdown-item" href="#"><i class="bi bi-plus"></i> Add show</a></li>
+                    <li><a class="dropdown-item" href="#"><i class="bi bi-play"></i> Shows</a></li>
                     <li><hr class="dropdown-divider"></li>
                     <a class="btn btn-danger btn-sm mx-4 " href><i class="bi bi-arrow-return-right"></i> Sign Out</a>
                   </ul>
+          {% else %}
+                  <a href="{% url 'auth:login' %}" class="btn btn-link text-decoration-none btn-sm">Sign In</a>
+                  <a href="{% url 'auth:signup' %}" class="btn btn-sm btn-success">Sign Up</a>
+          {% endif %}
               </div>
         </div>
       </div>

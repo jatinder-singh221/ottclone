@@ -9,7 +9,7 @@
 <body>
     <form action="{% url 'auth:signup' %}" method="POST">
         {% csrf_token %}
-        {{singup}}
+        {{htmlform}}
         {% for error in singup.errors %}
             {{error}}
         {% endfor %}

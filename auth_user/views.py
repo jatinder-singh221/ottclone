@@ -37,8 +37,9 @@ def signup(request):
         user_creation_instance = custom_usercreation_form
         signupform = user_creation_instance(request.POST or None)
 
-        if signupform.is_valid():
-            return HttpResponse('is valid')
+        if request.method == 'POST':
+            if signupform.is_valid():
+                return HttpResponse('is valid')
 
         context = {'singup':signupform}
         return render(request, 'signup.html',context)

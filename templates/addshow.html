@@ -1,0 +1,128 @@
+{% extends 'navbar.html' %}
+{% block title %}
+    Add | show
+{% endblock %}
+
+{% block form %}
+<div class="container mt-3 ">
+    {{htmlform.non_field_errors}}
+    <form action="{% url 'show:create' %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="row justify-content-center">
+            <div class="col col-md-4">
+                <h4>Add show</h4>
+            </div>
+            <div class="w-100"></div>
+            <div class="col col-md-2">
+                <label class="form-label" for="{{htmlform.show_name.id_for_label}}">{{htmlform.show_name.label}}</label>
+                {{htmlform.show_name}}
+
+                {% if htmlform.show_name.errors %}
+                <script>
+                    var user = '{{htmlform.show_name.id_for_label}}';
+                    var user_add_class = document.getElementById(user);
+                    user_add_class.classList.add('is-invalid')
+                </script>
+                {% for error in htmlform.show_name.errors %}
+                    <div class="invalid-feedback">
+                        {{error}}
+                    </div>
+                {% endfor %}
+                {% endif %}
+            </div>
+            <div class="col col-md-2">
+                <label class="form-label" for="{{htmlform.show_title.id_for_label}}">{{htmlform.show_title.label}}</label>
+                {{htmlform.show_title}}
+                {% if htmlform.show_title.errors %}
+                <script>
+                    var user = '{{htmlform.show_title.id_for_label}}';
+                    var user_add_class = document.getElementById(user);
+                    user_add_class.classList.add('is-invalid')
+                </script>
+                {% for error in htmlform.show_title.errors %}
+                    <div class="invalid-feedback">
+                        {{error}}
+                    </div>
+                {% endfor %}
+                {% endif %}
+            </div>
+            <div class="w-100"></div>
+            <div class="col-12 col-md-4">
+                <label class="form-label" for="{{htmlform.show_description.id_for_label}}">{{htmlform.show_description.label}}</label>
+                {{htmlform.show_description}}
+                {% if htmlform.show_description.errors %}
+                <script>
+                    var user = '{{htmlform.show_description.id_for_label}}';
+                    var user_add_class = document.getElementById(user);
+                    user_add_class.classList.add('is-invalid')
+                </script>
+                {% for error in htmlform.show_description.errors %}
+                    <div class="invalid-feedback">
+                        {{error}}
+                    </div>
+                {% endfor %}
+                {% endif %}
+            </div>
+            <div class="w-100"></div>
+            <div class="col-12 col-md-4">
+                <label class="form-label" for="{{htmlform.show_caption.id_for_label}}">{{htmlform.show_caption.label}}</label>
+                {{htmlform.show_caption}}
+                <!-- {{htmlform.show_caption.errors}} -->
+                {% if htmlform.show_caption.errors %}
+                        <script>
+                            var user = '{{htmlform.show_caption.id_for_label}}';
+                            var user_add_class = document.getElementById(user);
+                            user_add_class.classList.add('is-invalid')
+                        </script>
+                    {% for error in htmlform.show_caption.errors %}
+                    <div class="invalid-feedback">
+                        {{error}}
+                    </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+            <div class="w-100"></div>
+            <div class="col-12 col-md-4">
+                <label class="form-label" for="{{htmlform.show_catagory.id_for_label}}">{{htmlform.show_catagory.label}}</label>
+                {{htmlform.show_catagory}}
+                {% if htmlform.show_catagory.errors %}
+                    <script>
+                        var elementhello = '{{htmlform.show_catagory.id_for_label}}';
+                        var user_add_class = document.getElementById(elementhello);
+                        user_add_class.classList.add('is-invalid')
+                    </script>
+                    {% for error in htmlform.show_catagory.errors %}
+                        <div class="invalid-feedback">
+                            {{error}}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+            <div class="w-100"></div>
+            <div class="col-12 col-md-4">
+
+                <label class="form-label" for="{{htmlform.show_vedio.id_for_label}}">{{htmlform.show_vedio.label}}</label>
+                {{htmlform.show_vedio}}
+                   {% if htmlform.show_vedio.errors %}
+                <script>
+                    var elementhello = '{{htmlform.show_vedio.id_for_label}}';
+                    var user_add_class = document.getElementById(elementhello);
+                    user_add_class.classList.add('is-invalid')
+                </script>
+                {% for error in htmlform.show_vedio.errors %}
+                    <div class="invalid-feedback">
+                        {{error}}
+                    </div>
+                {% endfor %}
+            {% endif %}
+            </div>
+            <div class="w-100"></div>
+            <div class="col-12 col-md-4 ">
+                <button type="submit" class="btn btn-primary w-100 mt-2">Upload</button>
+            </div>
+            <div class="w-100"></div>
+        </div>
+
+    </form>
+</div>
+{% endblock %}

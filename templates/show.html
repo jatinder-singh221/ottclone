@@ -1,0 +1,13 @@
+{% extends 'navbar.html' %}
+{% block title %}
+    Shows
+{% endblock %}
+{% block items %}
+    {% for item in show %}
+        {{item.show_name}}
+        {{item.show_title}}
+        <video controls>
+            <source src="{{item.show_vedio.url}}">
+        </video>
+    {% endfor %}
+{% endblock %}
