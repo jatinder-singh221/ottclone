@@ -28,4 +28,11 @@ def show_show(request):
         context = {'show':shows}
         return render(request,'show.html',context)
     # else:
-    #     return redirect('auth:home')    
+    #     return redirect('auth:home') 
+ 
+def allitems(request,catagory_name):
+    all_show = show.objects.filter(show_catagory__catagorie_name__icontains = catagory_name )
+    context = {'all_items':all_show}
+    return render(request,'allofcatagory.html', context)
+
+ 

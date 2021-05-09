@@ -1,6 +1,7 @@
 from django.core.exceptions import ValidationError
 from django.db import models
 from django.contrib.auth.models import User
+from django.urls import reverse
 from .validators import input_validation, image_validation, vedio_validation
 
 class catagories(models.Model):
@@ -12,6 +13,9 @@ class catagories(models.Model):
 
     def __str__(self):
         return self.catagorie_name.title()
+    
+    def get_absolute_url(self):
+        return reverse('show:allitems',args=[str(self.catagorie_name)])
 
 class show(models.Model):
     show_authors = models.ForeignKey(User, on_delete = models.CASCADE, null=True,default=1)
@@ -27,3 +31,10 @@ class show(models.Model):
         db_table = 'show_table'
         get_latest_by = ['-show_upload_date']
         verbose_name_plural = 'show'
+    
+    def __str__(self):
+        return self.show_name
+
+
+
+

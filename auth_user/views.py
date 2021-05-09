@@ -3,7 +3,7 @@ from .forms import custom_auth_form, custom_usercreation_form
 from django.http import HttpResponse
 from django.contrib.auth import authenticate,login
 from django.contrib import messages
-# Create your views here.
+from shows.models import catagories, show
 
 def login(request):
 
@@ -45,4 +45,9 @@ def signup(request):
         return render(request, 'signup.html',context)
 
 def home(request):
-    return render(request,'navbar.html')
+    all_catagories = catagories.objects.all()
+    shows = show.objects.filter(show_catagory__catagorie_name__icontains = 'action')
+    show_movies = show.objects.filter(show_catagory__catagorie_name__icontains ='movies')
+    origianls = show.objects.filter(show_catagory__catagorie_name__icontains = 'originals')
+    context = {'catagories':all_catagories, 'show_item':shows, 'romance':show_movies, 'originals':origianls}
+    return render(request,'card.html', context)

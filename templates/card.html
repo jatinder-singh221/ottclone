@@ -1,0 +1,85 @@
+{% extends 'navbar.html' %}
+{% block items %}
+
+<div class="container">
+    <style>
+        .style{
+            width:14rem;
+            height:9rem;
+            border: solid;
+            border-radius: 5px;
+            border-color: white;
+            opacity: 0.5;
+        }
+        .style:hover{
+            opacity: 0.8;
+        }
+    </style>
+    <p class="lead">Actions</p>
+    <div class="row d-flex flex-row flex-nowrap overflow-auto">
+        {% for items in show_item %}
+        <div class="col ">
+            <a href="#">
+                <img src="{{items.show_caption.url}}" alt="hello" class="style">
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+        <a href="" class="text-decoration-none">see more</a>
+</div>
+
+<div class="container">
+    <style>
+        .style{
+            width:14rem;
+            height:9rem;
+            border: solid;
+            border-radius: 5px;
+            border-color: white;
+            opacity: 0.5;
+        }
+        .style:hover{
+            opacity: 0.8;
+        }
+    </style>
+    <p class="lead">Movies</p>
+    <div class="row d-flex flex-row flex-nowrap overflow-auto">
+        {% for item in romance %}
+        <div class="col ">
+            <a href="#">
+                <img src="{{item.show_caption.url}}" alt="hello" class="style">
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+        <a href="" class="text-decoration-none">see more</a>
+</div>
+
+<div class="container">
+    <style>
+        .style{
+            width:14rem;
+            height:9rem;
+            border: solid;
+            border-radius: 5px;
+            border-color: white;
+            opacity: 0.5;
+        }
+        .style:hover{
+            opacity: 0.8;
+        }
+    </style>
+    <p class="lead">Originals</p>
+    <div class="row d-flex flex-row flex-nowrap overflow-auto">
+        {% for item in originals %}
+        <div class="col ">
+            <a href="#">
+                <img src="{{item.show_caption.url}}" alt="hello" class="style">
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+        <a href="" class="text-decoration-none">see more</a>
+</div>
+
+{% endblock %}
