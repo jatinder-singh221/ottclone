@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% block title %}Dasboard{% endblock%}
+{% load active_link_tags %}
 {% block navbar %}
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
@@ -10,19 +11,19 @@
       <div class="collapse navbar-collapse " id="navbarNavDropdown">
         <ul class="navbar-nav mx-auto">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="{% url 'auth:home' %}"><i class="bi bi-house"></i> Home</a>
+            <a class="nav-link" aria-current="page" href="{% url 'auth:home' %}" id="link1"><i class="bi bi-house" ></i> Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'show:allitems' 'originals' %}"><i class="bi bi-star"></i> Originals</a>
+            <a class="nav-link " href="{% url 'show:allitems' 'originals' %}" id="link2"><i class="bi bi-star"></i> Originals</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'show:allitems' 'tv' %}"><i class="bi bi-display"></i> Tv shows</a>
+            <a class="nav-link " href="{% url 'show:allitems' 'tv' %}" id="link3"><i class="bi bi-display"></i> Tv shows</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'show:allitems' 'movies' %}"><i class="bi bi-collection"></i> Movies</a>
+            <a class="nav-link " href="{% url 'show:allitems' 'movies' %}" id="link4"><i class="bi bi-collection"></i> Movies</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#"><i class="bi bi-search"></i> Search</a>
+            <a class="nav-link" href="#"><i class="bi bi-search" id="link5"></i> Search</a>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -62,6 +63,32 @@
         </div>
       </div>
     </div>
+    {% if 'originals' in request.path %}
+    <script>
+      var doc = document.getElementById('link2');
+      doc.classList.add('active')
+    </script>
+    {% elif 'tv' in request.path %}
+    <script>
+      var doc = document.getElementById('link3');
+      doc.classList.add('active')
+    </script>
+    {% elif 'movies' in request.path %}
+    <script>
+      var doc = document.getElementById('link4');
+      doc.classList.add('active')
+    </script>
+    {% elif 'search' in request.path %}
+    <script>
+      var doc = document.getElementById('link5');
+      doc.classList.add('active')
+    </script>
+    {% else %}
+    <script>
+      var doc = document.getElementById('link1');
+      doc.classList.add('active')
+    </script>
+    {% endif %}
   </nav>
 {% endblock %}
 

@@ -19,13 +19,13 @@
     <div class="row d-flex flex-row flex-nowrap overflow-auto">
         {% for items in show_item %}
         <div class="col ">
-            <a href="#">
+            <a href="{{items.get_absolute_url}}">
                 <img src="{{items.show_caption.url}}" alt="hello" class="style">
             </a>
         </div>
         {% endfor %}
     </div>
-        <a href="" class="text-decoration-none">see more</a>
+        <a href="{% url 'show:allitems' 'actions' %}" class="text-decoration-none">see more</a>
 </div>
 
 <div class="container">
@@ -46,13 +46,13 @@
     <div class="row d-flex flex-row flex-nowrap overflow-auto">
         {% for item in romance %}
         <div class="col ">
-            <a href="#">
+            <a href="{{item.get_absolute_url}}">
                 <img src="{{item.show_caption.url}}" alt="hello" class="style">
             </a>
         </div>
         {% endfor %}
     </div>
-        <a href="" class="text-decoration-none">see more</a>
+        <a href="{% url 'show:allitems' 'movies' %}" class="text-decoration-none">see more</a>
 </div>
 
 <div class="container">
@@ -73,13 +73,13 @@
     <div class="row d-flex flex-row flex-nowrap overflow-auto">
         {% for item in originals %}
         <div class="col ">
-            <a href="#">
+            <a href="{{item.get_absolute_url}}">
                 <img src="{{item.show_caption.url}}" alt="hello" class="style">
             </a>
         </div>
         {% endfor %}
     </div>
-        <a href="" class="text-decoration-none">see more</a>
+        <a href="{% url 'show:allitems' 'originals' %}" class="text-decoration-none">see more</a>
 </div>
 
 {% endblock %}

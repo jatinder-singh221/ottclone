@@ -35,4 +35,11 @@ def allitems(request,catagory_name):
     context = {'all_items':all_show}
     return render(request,'allofcatagory.html', context)
 
+
+def show_item(request,pk):
+    item = show.objects.get(id = pk)
+    context = {'item':item}
+    return render(request,'vedio.html',context)
+    
+
  

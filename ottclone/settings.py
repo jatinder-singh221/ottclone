@@ -23,6 +23,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'auth_user.apps.AuthUserConfig',
     'shows.apps.ShowsConfig',
+    'active_link',
 ]
 
 MIDDLEWARE = [

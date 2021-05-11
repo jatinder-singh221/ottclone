@@ -1,11 +1,12 @@
 from django.core.exceptions import ValidationError
 from django.db import models
 from django.contrib.auth.models import User
+from django.shortcuts import render
 from django.urls import reverse
 from .validators import input_validation, image_validation, vedio_validation
 
 class catagories(models.Model):
-    catagorie_name = models.CharField('catagorie',max_length=100,validators=[input_validation])
+    catagorie_name = models.CharField('catagorie',max_length=100)
 
     class Meta:
         db_table = 'catagoires'
@@ -35,6 +36,9 @@ class show(models.Model):
     def __str__(self):
         return self.show_name
 
+    def get_absolute_url(self):
+        return reverse('show:show_item',args=[int(self.id)])
 
-
-
+class watch_history(models.Model):
+    user = models.OneToOneField(User,on_delete=models.CASCADE, related_name='history_related', related_query_name='history_query')
+    waths = models.ManyToManyField(show)
