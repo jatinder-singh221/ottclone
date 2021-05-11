@@ -1,7 +1,8 @@
 from django.http.response import HttpResponse
 from django.shortcuts import redirect, render
 from .forms import showform
-from .models import show
+from django.contrib.auth.models import User
+from .models import show,watch_history
 
 def create_show(request):
 
@@ -38,8 +39,17 @@ def allitems(request,catagory_name):
 
 def show_item(request,pk):
     item = show.objects.get(id = pk)
+    user_name = request.user
+    watch_history_person = watch_history.objects.get(user =user_name)
+    watch_history_person.waths.add(pk)
+
     context = {'item':item}
     return render(request,'vedio.html',context)
     
 
- 
+def history(request):
+    user = request.user
+    watchs = user.history_related
+    vedio = watchs.waths.all
+    context = {'watch':vedio}
+    return render(request,'history.html', context)

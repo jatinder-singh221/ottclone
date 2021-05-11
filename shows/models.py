@@ -2,6 +2,8 @@ from django.core.exceptions import ValidationError
 from django.db import models
 from django.contrib.auth.models import User
 from django.shortcuts import render
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 from django.urls import reverse
 from .validators import input_validation, image_validation, vedio_validation
 
@@ -41,4 +43,10 @@ class show(models.Model):
 
 class watch_history(models.Model):
     user = models.OneToOneField(User,on_delete=models.CASCADE, related_name='history_related', related_query_name='history_query')
-    waths = models.ManyToManyField(show)
+    waths = models.ManyToManyField(show, related_name='show_many')
+
+
+@receiver(post_save, sender = User)
+def watch_created(sender, instance, created, **kwargs):
+    if created:
+        watch_history.objects.create(user = instance)

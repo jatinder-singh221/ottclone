@@ -1,6 +1,35 @@
 {% extends 'navbar.html' %}
 {% block items %}
 
+{% if request.user.is_authenticated %}
+    <div class="container">
+        <style>
+            .style{
+                width:14rem;
+                height:9rem;
+                border: solid;
+                border-radius: 5px;
+                border-color: white;
+                opacity: 0.5;
+            }
+            .style:hover{
+                opacity: 0.8;
+            }
+        </style>
+        <p class="lead">Continue watching</p>
+        <div class="row d-flex flex-row flex-nowrap overflow-auto">
+            {% for items in history %}
+            <div class="col ">
+                <a href="{{items.get_absolute_url}}">
+                    <img src="{{items.show_caption.url}}" alt="hello" class="style">
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+            <a href="{% url 'show:history'  %}" class="text-decoration-none">see more</a>
+    </div>
+{% endif %}
+
 <div class="container">
     <style>
         .style{
