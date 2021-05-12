@@ -21,7 +21,7 @@ class catagories(models.Model):
         return reverse('show:allitems',args=[str(self.catagorie_name)])
 
 class show(models.Model):
-    show_authors = models.ForeignKey(User, on_delete = models.CASCADE, null=True,default=1)
+    show_authors = models.ForeignKey(User, on_delete = models.CASCADE, null=False,related_name='show_related')
     show_name = models.CharField('show name', max_length=100, db_column='show_name',validators=[input_validation])
     show_upload_date = models.DateField(auto_now_add=True,verbose_name='upload date')
     show_title = models.CharField('show title', max_length=100, db_column='show_title',validators=[input_validation])

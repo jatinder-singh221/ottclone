@@ -2,7 +2,7 @@ from django.contrib.auth.models import Group
 from django.shortcuts import redirect, render
 from .forms import custom_auth_form, custom_usercreation_form
 from django.http import HttpResponse
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login,logout
 from django.contrib import messages
 from shows.models import catagories, show, watch_history
 
@@ -67,4 +67,13 @@ def home(request):
         vedio = watchs.waths.all()
         context['history'] = vedio
     return render(request,'card.html', context)
+
+def logout_user(request):
+    logout(request)
+    response = redirect('auth:home')
+    for cookie in request.COOKIES:
+        print(response.delete_cookie(cookie))
+    return response
+
+
 
