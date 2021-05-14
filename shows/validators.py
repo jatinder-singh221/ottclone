@@ -16,7 +16,7 @@ def image_validation(image):
         raise ValidationError("Only 'jpg','jpeg','png' are allowed")
 
 def vedio_validation(vedio):
-    list_of_extension = ['mp4','avi']
+    list_of_extension = ['mp4','avi','mkv']
     extension_of_vedio = str(vedio).split('.')[-1]
     if extension_of_vedio.lower() in list_of_extension:
         pass
